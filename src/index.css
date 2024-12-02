@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap");
+
+* {
+  font-family: "Roboto Mono", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: f6f2ea;
+  font-weight: 400;
+}
+
+.header-container {
+  /* border: 1px solid red; */
+  font-family: "Roboto Mono", sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.menu-container {
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 500px;
+  margin: 0 auto;
+}
+
+.header-text {
+  color: #e8c863;
+}
+
+.header-menu {
+  margin-top: 30px;
+  padding: 8px;
+  /* border: 1px solid red; */
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.header-bottom-text {
+  margin-top: 40px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.pizza-container {
+  /* border: 2px solid red; */
+  display: flex;
+  padding: 5px;
+  width: 250px;
+  margin-top: 25px;
+}
+
+.pizza-image {
+  width: 65px;
+  height: auto;
+  object-fit: cover;
+}
+
+.pizza-text {
+  /* border: 1px solid red; */
+  margin-left: 25px;
+  width: 200px;
+  font-size: 12px;
+  padding: 2px;
+}
+
+.pizza-text-header {
+  margin-top: 5px;
+  font-size: large;
+}
+
+.botton-section {
+  /* border: 1px solid red; */
+  font-size: small;
+  font-family: "Roboto Mono", sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin: 15px auto;
+}
+
+.bottom-button {
+  margin-top: 15px;
+  background-color: #f4d06f;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+}
