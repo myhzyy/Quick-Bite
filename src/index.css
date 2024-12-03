@@ -20,6 +20,16 @@
   margin: 0 auto;
 }
 
+.search-bar {
+  /* border: 1px solid red; */
+  margin: 15px;
+  padding: 25px;
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
 .menu-container {
   /* border: 1px solid red; */
   display: grid;
@@ -91,4 +101,7 @@
   color: #333;
   padding: 10px 20px;
   border: none;
+}
+
+.search-bar {
 }

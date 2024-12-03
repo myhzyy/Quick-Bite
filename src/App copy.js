@@ -1,73 +1,86 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-export default function App() {
-  const [searchBar, setSearchBar] = useState("");
-  const [savedText, setSavedText] = useState([]);
-  const [pokemonList, setPokemonList] = useState([]); // Store all fetched Pokémon data
+// export default function App() {
+//   return (
+//     <>
+//       <Header />
 
-  console.log(savedText[savedText.length - 1]);
-  console.log(savedText.length);
+//       <div className="menu-container">
+//         <MainSection
+//           header={"Focaccia"}
+//           text={"Bread with italian olive oil and rosemary"}
+//           price={6}
+//         />
+//         <MainSection
+//           header={"Focaccia"}
+//           text={"Bread with italian olive oil and rosemary"}
+//           price={6}
+//         />
+//         <MainSection
+//           header={"Focaccia"}
+//           text={"Bread with italian olive oil and rosemary"}
+//           price={6}
+//         />
+//         <MainSection
+//           header={"Focaccia"}
+//           text={"Bread with italian olive oil and rosemary"}
+//           price={6}
+//         />
+//         <MainSection
+//           header={"Focaccia"}
+//           text={"Bread with italian olive oil and rosemary"}
+//           price={6}
+//         />
+//         <MainSection
+//           header={"Focaccia"}
+//           text={"Bread with italian olive oil and rosemary"}
+//           price={6}
+//         />
+//       </div>
+//       <BottomSection />
+//     </>
+//   );
+// }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+// function Header() {
+//   return (
+//     <div className="header-container">
+//       <h1 className="header-text">- FAST REACT PIZZA -</h1>
+//       <div className="header-menu">
+//         <h3>OUR MENU</h3>
+//       </div>
 
-    // Add the new search term (from searchBar) to the savedText state
-    setSavedText((currentSaved) => [...currentSaved, { title: searchBar }]);
+//       <p className="header-bottom-text">
+//         Authentic Italian cuisine, 6 creative dishes to chooce from. All from
+//         our stone over, all organic, all delicious
+//       </p>
+//     </div>
+//   );
+// }
 
-    setSearchBar(""); // Clear the search bar after submitting
-  }
+// function MainSection({ header, text, price }) {
+//   return (
+//     <div className="pizza-container">
+//       <img
+//         className="pizza-image"
+//         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb_y0UJ8gUAGadziRuqwO4MWWBkxbOPNTssQ&s"
+//         alt="pizza-item"
+//       />
 
-  useEffect(() => {
-    if (savedText.length === 0) return; // Don't fetch if savedText is empty
+//       <div className="pizza-text">
+//         <h2 className="pizza-text-header">{header}</h2>
+//         <p>{text}</p>
+//         <p>{price}</p>
+//       </div>
+//     </div>
+//   );
+// }
 
-    const fetchData = async () => {
-      try {
-        const pokemonName = savedText[savedText.length - 1].title; // Get the latest title
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Pokemon not found");
-        }
-
-        const data = await response.json();
-
-        // Add the new Pokémon data to the pokemonList state
-        setPokemonList((currentList) => [...currentList, data]);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchData();
-  }, [savedText]); // Re-run the effect when savedText changes
-
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          id="pokemonName"
-          placeholder="Enter Pokemon Name"
-          value={searchBar}
-          onChange={(e) => setSearchBar(e.target.value)}
-        />
-        <button>Fetch Pokemon</button>
-      </form>
-
-      {/* Render the list of fetched Pokémon */}
-      <ul>
-        {pokemonList.map((pokemon, index) => (
-          <li key={index}>
-            <p>{pokemon.name}</p>
-            <img
-              src={pokemon.sprites.front_default}
-              alt={`${pokemon.name} sprite`}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+// function BottomSection() {
+//   return (
+//     <div className="botton-section">
+//       <p>We're open from 12:00 to 22:00. Come visit or order online</p>
+//       <button className="bottom-button">Order</button>
+//     </div>
+//   );
+// }

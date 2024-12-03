@@ -1,9 +1,38 @@
 import { useState, useEffect } from "react";
+import SearchBar from "./component/SearchBar";
 
 export default function App() {
+  const [meal, setMeal] = useState(null); // State to store meal data
+  const [loading, setLoading] = useState(true); // State for loading
+  const [error, setError] = useState(null); // State for error handling
+
+  // console.log(meal);
+
+  useEffect(() => {
+    async function fetchMeal() {
+      try {
+        const response = await fetch(
+          "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata"
+        );
+        if (!response.ok) {
+          throw new Error(`Typed in wrong! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        // console.log(data);
+        setMeal(data.meals[0]);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchMeal();
+  }, []);
+
   return (
     <>
       <Header />
+      <SearchBar />
 
       <div className="menu-container">
         <MainSection
@@ -57,6 +86,17 @@ function Header() {
     </div>
   );
 }
+
+// function SearchBar() {
+//   return (
+//     <div>
+//       <form>
+//         <input type="text" placeholder="search recipe here.." />
+//         <button>Search</button>
+//       </form>
+//     </div>
+//   );
+// }
 
 function MainSection({ header, text, price }) {
   return (
