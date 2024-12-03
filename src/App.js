@@ -10,7 +10,7 @@ export default function App() {
   const [type, setType] = useState("");
   const [submit, setSubmit] = useState("");
 
-  // console.log(submit);
+  console.log(meal);
 
   useEffect(() => {
     async function fetchMeal() {
@@ -22,7 +22,7 @@ export default function App() {
           throw new Error(`Typed in wrong! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data.meals[0]);
+        // console.log(data.meals[0]);
         setMeal(data.meals[0]);
       } catch (err) {
         setError(err.message);
@@ -35,7 +35,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header meal={meal} />
       <SearchBar
         type={type}
         setType={setType}
@@ -44,36 +44,16 @@ export default function App() {
       />
 
       <div className="menu-container">
-        <MainSection
-          header={"Focaccia"}
-          text={"Bread with italian olive oil and rosemary"}
-          price={6}
-        />
-        <MainSection
-          header={"Focaccia"}
-          text={"Bread with italian olive oil and rosemary"}
-          price={6}
-        />
-        <MainSection
-          header={"Focaccia"}
-          text={"Bread with italian olive oil and rosemary"}
-          price={6}
-        />
-        <MainSection
-          header={"Focaccia"}
-          text={"Bread with italian olive oil and rosemary"}
-          price={6}
-        />
-        <MainSection
-          header={"Focaccia"}
-          text={"Bread with italian olive oil and rosemary"}
-          price={6}
-        />
-        <MainSection
-          header={"Focaccia"}
-          text={"Bread with italian olive oil and rosemary"}
-          price={6}
-        />
+        {submit && meal && (
+          <>
+            <MainSection
+              header={<p>{meal?.strMeal}</p>}
+              text={meal?.strIngredient1}
+              price={6}
+              image={meal?.strMealThumb}
+            />
+          </>
+        )}
       </div>
       <BottomSection />
     </>
@@ -83,7 +63,7 @@ export default function App() {
 function Header() {
   return (
     <div className="header-container">
-      <h1 className="header-text">- FAST REACT PIZZA -</h1>
+      <h1 className="header-text">- QuickBite -</h1>
       <div className="header-menu">
         <h3>OUR MENU</h3>
       </div>
@@ -96,25 +76,10 @@ function Header() {
   );
 }
 
-// function SearchBar() {
-//   return (
-//     <div>
-//       <form>
-//         <input type="text" placeholder="search recipe here.." />
-//         <button>Search</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-function MainSection({ header, text, price }) {
+function MainSection({ header, text, price, image }) {
   return (
     <div className="pizza-container">
-      <img
-        className="pizza-image"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb_y0UJ8gUAGadziRuqwO4MWWBkxbOPNTssQ&s"
-        alt="pizza-item"
-      />
+      <img className="pizza-image" src={image} alt="pizza-item" />
 
       <div className="pizza-text">
         <h2 className="pizza-text-header">{header}</h2>

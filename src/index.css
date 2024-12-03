@@ -61,13 +61,16 @@
   display: flex;
   padding: 5px;
   width: 250px;
+  height: 100px;
   margin-top: 25px;
+  align-items: center;
 }
 
 .pizza-image {
-  width: 65px;
-  height: auto;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .pizza-text {
