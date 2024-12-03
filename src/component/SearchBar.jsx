@@ -2,16 +2,14 @@ import React from "react";
 import { useState } from "react";
 import "../index.css";
 
-function SearchBar() {
-  const [type, setType] = useState("");
-  const [submit, setSubmit] = useState([]);
-
+function SearchBar({ type, setType, submit, setSubmit }) {
   //   console.log(type);
-  console.log(submit);
+  //   console.log(submit);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSubmit([...submit, { title: type }]);
+    setSubmit(type);
+    // setSubmit([...submit, { title: type }]);
     setType("");
   }
 

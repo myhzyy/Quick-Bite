@@ -6,19 +6,23 @@ export default function App() {
   const [loading, setLoading] = useState(true); // State for loading
   const [error, setError] = useState(null); // State for error handling
 
-  // console.log(meal);
+  /// Search bar state
+  const [type, setType] = useState("");
+  const [submit, setSubmit] = useState("");
+
+  // console.log(submit);
 
   useEffect(() => {
     async function fetchMeal() {
       try {
         const response = await fetch(
-          "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata"
+          `https://www.themealdb.com/api/json/v1/1/search.php?s=${submit}`
         );
         if (!response.ok) {
           throw new Error(`Typed in wrong! Status: ${response.status}`);
         }
         const data = await response.json();
-        // console.log(data);
+        console.log(data.meals[0]);
         setMeal(data.meals[0]);
       } catch (err) {
         setError(err.message);
@@ -27,12 +31,17 @@ export default function App() {
       }
     }
     fetchMeal();
-  }, []);
+  }, [submit]);
 
   return (
     <>
       <Header />
-      <SearchBar />
+      <SearchBar
+        type={type}
+        setType={setType}
+        submit={submit}
+        setSubmit={setSubmit}
+      />
 
       <div className="menu-container">
         <MainSection
